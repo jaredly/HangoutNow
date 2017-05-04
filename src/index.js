@@ -6,8 +6,10 @@ let mainWindow
 
 
 app.on('window-all-closed', function() {
-  mainWindow = null
-  app.quit();
+  if (mainWindow) {
+    mainWindow = null
+    app.quit();
+  }
 });
 
 const openWindow = (events, user) => {

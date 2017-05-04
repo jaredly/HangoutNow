@@ -17,7 +17,7 @@ module.exports = user => {
         singleEvents: true,
         orderBy: 'startTime',
         timeMax: hoursFromNow(1),
-        timeMin: hoursFromNow(-2),
+        timeMin: hoursFromNow(-1),
       }, done)).then(({items}) => items)
     ))).then(nested => [].concat(...nested)).then(events => {
       console.log('got', events.length, 'events')
