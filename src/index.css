@@ -1,0 +1,88 @@
+div {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    -webkit-app-region: drag;
+    z-index: 10;
+    transition: background-color .2s ease;
+    background-color: transparent;
+}
+.top:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    position: absolute;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #eee;
+    font-family: sans-serif;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+webview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.wrapper {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: drag;
+}
+
+#top-text {
+    padding: 10px 20px;
+    font-size: 80%;
+    font-weight: 200;
+}
+.button {
+    padding: 10px 20px;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+.button:hover {
+    background-color: #fff;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #aaa;
+}
