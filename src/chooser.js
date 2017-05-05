@@ -1,7 +1,14 @@
 
+const setText = (id, text) => document.getElementById(id).textContent = text + ''
+
 const container = document.getElementById('buttons')
-window.pick = (events, user) => {
-  document.getElementById('top-text').textContent = `Events for ${user.name} : ${user.email}`
+window.pick = (events, user, startTime, endTime) => {
+  setText('email', user.email)
+  setText('user-name', user.name)
+  setText('num-events', events.length)
+  setText('start-time', new Date(startTime).toLocaleTimeString())
+  setText('end-time', new Date(endTime).toLocaleTimeString())
+  window.eventss = events
   events.forEach(event => {
     const node = document.createElement('div')
     node.className = 'button'
