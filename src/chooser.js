@@ -32,6 +32,8 @@ window.pick = (events, user, startTime, endTime) => {
 }
 
 const show = link => {
+  const home = document.getElementById('home')
+  home.style.display = 'block'
   const back = document.createElement('div')
   document.body.appendChild(back)
   back.className = 'loading'
@@ -39,4 +41,9 @@ const show = link => {
   node.src = link
   node.setAttribute('plugins', 'on')
   document.body.appendChild(node)
+  home.onclick = () => {
+    home.style.display = 'none'
+    node.parentNode.removeChild(node)
+    back.parentNode.removeChild(back)
+  }
 }

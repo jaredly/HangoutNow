@@ -9,6 +9,8 @@ const hoursFromNow = hours => {
   return new Date(Date.now() + hours * HOUR_MS).toISOString()
 }
 
+const cmp = (a, b) => a < b ? -1 : a > b ? 1 : 0
+
 module.exports = user => {
   const api = new gcal.GoogleCalendar(user.token.access_token)
   const startTime = hoursFromNow(-1)
@@ -28,9 +30,8 @@ module.exports = user => {
         .filter(m => m.hangoutLink) // only w/ hangouts
         .filter(m => !m.start.date) // exclude all-day events
         .filter(m => got[m.id] ? false : (got[m.id] = true)) // dedup
+        .sort((a, b) => new Date(a.start.dateTime).getTime() - new Date(b.start.dateTime).getTime())
       console.log('got', hangouts.length, 'events with hangout')
-      console.log(hangouts.map(m => m.summary))
-      console.log(hangouts.slice(0, 20).map(m => JSON.stringify(m.start)))
       return {events: hangouts, startTime, endTime}
     })
 }

@@ -23,6 +23,7 @@ div {
     z-index: 10;
     transition: background-color .2s ease;
     background-color: transparent;
+    flex-direction: row;
 }
 .top:hover {
     background-color: rgba(255, 255, 255, 0.5);
@@ -72,9 +73,32 @@ webview {
     -webkit-app-region: no-drag;
     transition: background-color .2s ease;
     flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+}
+.spring {
+    flex: 1;
+}
+.time {
+    font-size: 20px;
+}
+.event-start {
+    padding-right: 20px;
 }
 .button:hover {
     background-color: #ccc;
+}
+
+#home {
+    display: none;
+    background-color: rgba(255,255,255,0.5);
+    color: black;
+    border: none;
+    padding: 0 10px;
+    align-self: stretch;
+}
+#home:hover {
+    background-color: white;
 }
 
 #buttons {
