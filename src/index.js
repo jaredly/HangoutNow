@@ -40,6 +40,10 @@ const openWindow = (events, user) => {
 app.on('ready', () => {
   getSession(app.getPath('userData')).then(user => {
     return getClosestMeeting(user).then(events => openWindow(events, user))
+  }).catch(err => {
+    console.log('failure')
+    console.error(err)
+    app.quit()
   })
 })
 

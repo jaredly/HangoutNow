@@ -42,7 +42,8 @@ const getProfile = token => {
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        console.error('failed to get user', data, apiKey, token)
+        console.log(JSON.stringify(data.error))
+        console.error('failed to get user', data.error, apiKey, token)
         throw new Error('Unable to login w/ google')
       }
       return {
@@ -64,9 +65,17 @@ const maybeRefreshToken = (token, documentsDir) => {
         .then(getProfile)
     } else {
       return getProfile(token)
+        .catch(err => {
+          console.log('bad creds sounds like')
+          return login.authorize()
+            .then(addExpiresAt)
+            .then(token => (saveData(documentsDir, token), token))
+            .then(getProfile)
+        })
     }
   }
   return login.authorize()
+    .then(addExpiresAt)
     .then(token => (saveData(documentsDir, token), token))
     .then(getProfile)
 }
