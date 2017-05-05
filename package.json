@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . HangoutNow --platform=darwin --arch=x64 --icon=resources/icon.icns --ignore resources --ignore yarn.lock"
+    "package": "electron-packager . HangoutNow --platform=darwin --arch=x64 --icon=resources/icon.icns --ignore resources --ignore yarn.lock",
+    "dmg": "electron-installer-dmg HangoutNow-darwin-x64/HangoutNow.app HangoutNow --icon resources/icon.icns"
   },
   "dependencies": {
     "electron": "^1.6.6",
@@ -11,6 +12,7 @@
     "qs": "^6.4.0"
   },
   "devDependencies": {
+    "electron-installer-dmg": "^0.2.1",
     "electron-packager": "^8.7.0"
   }
 }
