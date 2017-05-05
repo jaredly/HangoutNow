@@ -1,6 +1,13 @@
 
 const setText = (id, text) => document.getElementById(id).textContent = text + ''
 
+const div = (className, ...children) => {
+  const node = document.createElement('div')
+  node.className = className
+  children.map(child => typeof child === 'string' ? document.createTextNode(child) : child).forEach(child => node.appendChild(child))
+  return node
+}
+
 const container = document.getElementById('buttons')
 window.pick = (events, user, startTime, endTime) => {
   setText('email', user.email)
@@ -10,10 +17,14 @@ window.pick = (events, user, startTime, endTime) => {
   setText('end-time', new Date(endTime).toLocaleTimeString())
   window.eventss = events
   events.forEach(event => {
-    const node = document.createElement('div')
-    node.className = 'button'
+    const node = div(
+      'button',
+      div('event-name', event.summary),
+      div('spring'),
+      div('event-start time', new Date(event.start.dateTime).toLocaleTimeString()),
+      div('event-end time', new Date(event.end.dateTime).toLocaleTimeString())
+    )
     container.appendChild(node)
-    node.textContent = event.summary
     node.onclick = () => {
       show(event.hangoutLink + '&authuser=' + user.email)
     }

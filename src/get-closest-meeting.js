@@ -23,9 +23,11 @@ module.exports = user => {
       }, done)).then(({items}) => items)
     ))).then(nested => [].concat(...nested)).then(events => {
       console.log('got', events.length, 'events')
+      const got = {}
       const hangouts = events
         .filter(m => m.hangoutLink) // only w/ hangouts
         .filter(m => !m.start.date) // exclude all-day events
+        .filter(m => got[m.id] ? false : (got[m.id] = true)) // dedup
       console.log('got', hangouts.length, 'events with hangout')
       console.log(hangouts.map(m => m.summary))
       console.log(hangouts.slice(0, 20).map(m => JSON.stringify(m.start)))
