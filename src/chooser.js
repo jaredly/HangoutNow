@@ -26,14 +26,43 @@ window.pick = (events, user, startTime, endTime) => {
     )
     container.appendChild(node)
     node.onclick = () => {
-      show(event.hangoutLink + '&authuser=' + user.email)
+      showForEmail(event.hangoutLink, user.email)
     }
   })
+  window.show = link => showForEmail(link, user.email)
+  document.getElementById('input').onpaste = e => {
+    [...e.clipboardData.items].some(item => {
+      if (item.kind === 'string' && item.type === 'text/plain') {
+        item.getAsString(str => {
+          if (str.trim().match(/^https?:\/\//)) {
+            showForEmail(str.trim(), user.email)
+          }
+        })
+        return true
+      }
+    })
+  }
+}
+
+const showForEmail = (link, email) => {
+  if (link.includes('?')) {
+    show(link + '&authuser=' + email)
+  } else {
+    show(link + '?authuser=' + email)
+  }
 }
 
 const show = link => {
+  const mute = document.getElementById('mute')
   const home = document.getElementById('home')
   home.style.display = 'block'
+  mute.style.display = 'block'
+  mute.className = ''
+  mute.onclick = () => {
+    node.setAudioMuted(!node.isAudioMuted())
+    mute.className = node.isAudioMuted() ? 'muted' : ''
+    mute.textContent = node.isAudioMuted() ? 'unmute' : 'mute'
+  }
   const back = document.createElement('div')
   document.body.appendChild(back)
   back.className = 'loading'
@@ -43,6 +72,7 @@ const show = link => {
   document.body.appendChild(node)
   home.onclick = () => {
     home.style.display = 'none'
+    mute.style.display = 'none'
     node.parentNode.removeChild(node)
     back.parentNode.removeChild(back)
   }

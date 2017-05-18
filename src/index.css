@@ -89,7 +89,7 @@ webview {
     background-color: #ccc;
 }
 
-#home {
+#home, #mute {
     display: none;
     background-color: rgba(255,255,255,0.5);
     color: black;
@@ -100,6 +100,17 @@ webview {
 #home:hover {
     background-color: white;
 }
+
+#mute {
+    background-color: rgba(255,255,255,0.5);
+}
+#mute.muted {
+    background-color: rgba(255,100,100,0.5);
+}
+#mute:hover {
+    background-color: red;
+}
+
 
 #buttons {
     background-color: white;
