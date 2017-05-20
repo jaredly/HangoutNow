@@ -65,6 +65,14 @@ webview {
     -webkit-app-region: drag;
 }
 
+input {
+    padding: 5px 10px;
+    margin: 5px 15px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    background-color: transparent;
+}
+
 .button {
     padding: 20px 30px;
     cursor: pointer;
@@ -120,7 +128,7 @@ webview {
 }
 
 .events {
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .welcome {

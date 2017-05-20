@@ -5,6 +5,9 @@ const prom = fn => new Promise((res, rej) => fn((err, val) => err ? rej(err) : r
 
 const HOUR_MS = 1000 * 60 * 60
 
+const now = Date.now()
+Date.now = () => now - HOUR_MS * 6
+
 const hoursFromNow = hours => {
   return new Date(Date.now() + hours * HOUR_MS).toISOString()
 }

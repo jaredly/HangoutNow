@@ -9,6 +9,7 @@ const div = (className, ...children) => {
 }
 
 const container = document.getElementById('buttons')
+
 window.pick = (events, user, startTime, endTime) => {
   setText('email', user.email)
   setText('user-name', user.name)
@@ -16,6 +17,7 @@ window.pick = (events, user, startTime, endTime) => {
   setText('start-time', new Date(startTime).toLocaleTimeString())
   setText('end-time', new Date(endTime).toLocaleTimeString())
   window.eventss = events
+  container.innerHTML = ''
   events.forEach(event => {
     const node = div(
       'button',

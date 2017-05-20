@@ -4,7 +4,6 @@ const getSession = require('./session')
 const getClosestMeeting = require('./get-closest-meeting')
 let mainWindow
 
-
 app.on('window-all-closed', function() {
   if (mainWindow) {
     mainWindow = null
@@ -38,7 +37,9 @@ const openWindow = (events, user, startTime, endTime) => {
 
 app.on('ready', () => {
   getSession(app.getPath('userData')).then(user => {
-    return getClosestMeeting(user).then(({events, startTime, endTime}) => openWindow(events, user, startTime, endTime))
+    return getClosestMeeting(user).then(
+      ({events, startTime, endTime}) => openWindow(events, user, startTime, endTime)
+    )
   }).catch(err => {
     console.log('failure')
     console.error(err)
