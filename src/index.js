@@ -36,6 +36,7 @@ const openWindow = (events, user, startTime, endTime) => {
 }
 
 app.on('ready', () => {
+  require('./menu.js');
   getSession(app.getPath('userData')).then(user => {
     return getClosestMeeting(user).then(
       ({events, startTime, endTime}) => openWindow(events, user, startTime, endTime)
